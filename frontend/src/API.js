@@ -8,8 +8,6 @@ export const fetchData = async (url) => {
             'Content-Type' : 'application/json'
         }
     })
-    // const {tickets, after_url, end_of_stream} = await res.json();
-    // return {tickets, after_url, end_of_stream};
     return await res.json();
 }
 

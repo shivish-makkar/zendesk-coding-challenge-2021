@@ -43,17 +43,18 @@ function App() {
   }, [endOfStream, afterUrl])
 
   return (
-    <div className="App">
+    <>
       <header className="App-header">
         Mobile Ticket Viewer
       </header>
       <body>
       {tickets.length?
-          <div>
-              This page displays {pageSize} tickets, out of {tickets.length} total tickets
+          <div className="TicketsInfoText">
+              This page displays {pageSize} tickets, out of {tickets.length} total tickets in your account. Please
+              click on the desired ticket to view more details!
           </div>
             :
-          <div>
+          <div className="TicketsInfoText">
               Unable to retrieve ticket info right now
           </div>
       }
@@ -62,7 +63,7 @@ function App() {
           <IndividualTicketModal ticket={currentTicket} onModalClose={onModalClose}/> : null
       }
       </body>
-    </div>
+    </>
   );
 }
 
