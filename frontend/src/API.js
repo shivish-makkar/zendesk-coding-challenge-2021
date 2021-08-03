@@ -1,9 +1,7 @@
-const serverUrl = process.env.REACT_APP_PROXY_URL
+const serverUrl = 'http://localhost:9000/tickets'
 
 export const fetchData = async () => {
-    const res = await fetch(serverUrl, {
-        method: 'GET',
-    })
+    const res = await fetch(serverUrl);
     return await res.json();
 }
 
