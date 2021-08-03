@@ -1,12 +1,8 @@
-const token = process.env.REACT_APP_API_OAUTH_TOKEN;
+const serverUrl = process.env.REACT_APP_PROXY_URL
 
-export const fetchData = async (url) => {
-    const res = await fetch(url, {
+export const fetchData = async () => {
+    const res = await fetch(serverUrl, {
         method: 'GET',
-        headers: {
-            'Authorization' : `Bearer ${token}`,
-            'Content-Type' : 'application/json'
-        }
     })
     return await res.json();
 }
