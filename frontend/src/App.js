@@ -31,7 +31,6 @@ function App() {
             if (response === "Error") {
                 setError(true);
             } else {
-                console.log("val")
                 const result = response.map(ticket =>  ({key: ticket.id, ...ticket}))
                 setTickets(result)
             }
