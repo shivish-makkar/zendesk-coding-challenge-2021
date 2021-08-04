@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import {Divider, Modal, Table} from "antd";
+import {Divider, Modal} from "antd";
 
 /**
  * A functional component that displays details of an individual ticket
