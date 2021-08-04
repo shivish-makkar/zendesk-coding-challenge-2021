@@ -1,7 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const router = express.Router();
-const env = require('dotenv/config');
+require('dotenv/config');
 
 const token = process.env.API_OAUTH_TOKEN;
 const startTime = '1625084286';
@@ -14,11 +14,11 @@ function wait(ms) {
 
 // Helper function to call an API
 const fetchData = async (url) => {
-    const response = await fetch(url, {
-        method: 'GET',
+    const response = await fetch(url,
+        {
         headers: {
-            'Authorization' : `Bearer ${token}`,
-            'Content-Type' : 'application/json'
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
         }
     });
 
@@ -34,24 +34,29 @@ const fetchData = async (url) => {
 
 /* GET all current tickets from the account linked with provided token. */
 router.get('/', async function(req, res, next) {
-    // Initial API Call
-    const {tickets, end_of_stream, after_url} = await fetchData(initialUrl)
+    try {
+        // Initial API Call
+        const {tickets, end_of_stream, after_url} = await fetchData(initialUrl);
 
-    // Assigning returned values to a re-assignable value
-    let endOfStream = end_of_stream;
-    let afterUrl = after_url;
-    let totalTickets = tickets;
+        // Assigning returned values to a re-assignable value
+        let endOfStream = end_of_stream;
+        let afterUrl = after_url;
+        let totalTickets = tickets;
 
-    // Calling the API until no more data is left to be accessed
-    while (!endOfStream) {
-        const {tickets, end_of_stream, after_url} = await fetchData(afterUrl)
+        // Calling the API until no more data is left to be accessed
+        while (!endOfStream) {
+            const {tickets, end_of_stream, after_url} = await fetchData(afterUrl)
 
-        endOfStream = end_of_stream;
-        afterUrl = after_url;
-        totalTickets = [...totalTickets, ...tickets]
+            endOfStream = end_of_stream;
+            afterUrl = after_url;
+            totalTickets = [...totalTickets, ...tickets]
+        }
+
+        res.send(totalTickets);
+    } catch (error) {
+        res.status(500).send()
     }
 
-    res.send(totalTickets);
 });
 
 module.exports = router;

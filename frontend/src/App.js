@@ -54,7 +54,7 @@ function App() {
         return (
             <>
                 <div className="App-header">
-                    Mobile Ticket Viewer
+                    Ticket Viewer
                 </div>
                 <div>
                     {tickets.length ?

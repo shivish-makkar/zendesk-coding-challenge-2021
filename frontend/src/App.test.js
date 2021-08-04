@@ -4,7 +4,7 @@ import App from './App';
 
 test('App header renders correct text', () => {
   render(<App />);
-  const header = screen.getByText("Mobile Ticket Viewer");
+  const header = screen.getByText("Ticket Viewer");
   expect(header).toBeInTheDocument();
 });
 
