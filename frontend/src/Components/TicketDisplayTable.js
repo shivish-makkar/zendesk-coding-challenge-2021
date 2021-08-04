@@ -15,6 +15,11 @@ const columns = [
         render: text => text ? text.charAt(0).toUpperCase() + text.slice(1) : "Loading",
     },
     {
+        title: 'Ticket_ID',
+        dataIndex: 'id',
+        key: 'id',
+    },
+    {
         title: 'Subject',
         dataIndex: 'subject',
         key: 'subject',
@@ -51,13 +56,6 @@ const columns = [
     }
 ]
 
-const noTicketsColumnData = [{
-    'status': 'NA',
-    'subject': 'Tickets Currently Unavailable',
-    'tags': ['NA'],
-    'created_at': 'Invalid Date',
-    'updated_at': 'Invalid Date',
-},];
 
 // Helper function to convert Date and Time to a format that is
 // more easy to understand for the end user
@@ -86,21 +84,21 @@ const convertDateTime = (val) => {
  * onTicketMoreInfoRequest -> a function passed down that helps in displaying details of
  *                            an individual ticket when a row is clicked
  */
-function TicketDisplayTable({tickets, PAGE_SIZE, onTicketMoreInfoRequest}) {
+function TicketDisplayTable({tickets, onTicketMoreInfoRequest}) {
     return (
         <>
             <Table
-                test-id="TableComponent"
+                data-testid="TicketDisplayTable"
                 columns={columns}
-                dataSource={tickets? tickets: noTicketsColumnData}
-                rowKey={tickets => tickets.id}
+                dataSource={tickets}
+                rowkey={tickets => tickets.id}
                 className="TicketDisplayTable"
                 onRow={(record, rowIndex) => {
                     return {
                         onClick: event => onTicketMoreInfoRequest(record),
                     }
                 }}
-                pagination={{defaultPageSize: PAGE_SIZE, showSizeChanger: false}}
+                pagination={{defaultPageSize: 25, showSizeChanger: false, 'data-testid': "Pagination"}}
             />
         </>
     );

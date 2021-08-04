@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import {Divider, Modal} from "antd";
+import {Divider, Modal, Table} from "antd";
 
 /**
  * A functional component that displays details of an individual ticket
@@ -15,13 +15,13 @@ function IndividualTicketModal({ticket, onTicketInfoModalClose}) {
     return (
         <>
             <Modal title="Ticket Details" visible={true} onOk={onTicketInfoModalClose}
-                   onCancel={onTicketInfoModalClose} test-id="ModalComponent">
+                   onCancel={onTicketInfoModalClose}  data-testid="IndividualTicketModal">
                 <p>Subject – {ticket.subject}</p>
                 <Divider className="Divider"/>
-                <p> Ticket Details: </p>
-                <p>{ticket.description}</p>
+                <p data-testid="IndividualTicketModal-Content-1"> Ticket Details: </p>
+                <p data-testid="IndividualTicketModal-Content-2">{ticket.description}</p>
                 <Divider className="Divider"/>
-                <div>
+                <div data-testid="IndividualTicketModal-Content-3">
                     Requested by: {ticket.requester_id}
                     <br/>
                     Submitted by: {ticket.submitter_id}

@@ -24,3 +24,9 @@
 .Divider {
   background-color: #282c34;
 }
+
+.Error-Text {
+  margin-right: 0;
+  margin-left: 30vw;
+  font-size: 2rem;
+}
